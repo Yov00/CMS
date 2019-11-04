@@ -1,0 +1,51 @@
+
+#flash-message{
+    position:absolute;
+    animation:goToTheVoid;
+    right:100px;
+    bottom:150px;
+    animation-iteration-count: 1;
+    animation-duration:5s;
+    width:fit-content;
+    animation-fill-mode: forwards;
+    z-index: 2000;
+}
+@keyframes goToTheVoid{
+    0%{
+        bottom:50px;
+        right:250px;
+        opacity: 1;
+     }
+     15%{
+         bottom:50px;
+         right:20px;
+         opacity: 1;
+         }
+    80%{
+        bottom:50px;
+        right:20px;
+        opacity: 1;
+        }
+     100%{
+         right:-100px;
+         bottom:50px;
+         opacity: 0;
+         right:0;
+         display: none;
+         }
+}
+.Confirm-deletion{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height: 100vh;
+  
+  justify-content: center;
+  align-items: center;
+  background-color:rgba(0, 0, 0, 0.6);
+  z-index:2021;
+}
+#trix-toolbar-1{
+  font-size:16px;
+}
