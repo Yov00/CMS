@@ -16,14 +16,25 @@ class Post extends Model
      * @return void
      * 
      */
-    function deleteImage()
+    public function deleteImage()
     {
         Storage::delete($this->image);
     }
 
 
-    function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+ 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    // I post has tag
+    public function hasTag($tagId)
+    {
+       return in_array($tagId, $this->tags->pluck('id')->toArray());
     }
 }

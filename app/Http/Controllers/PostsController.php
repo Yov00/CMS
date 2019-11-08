@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Post;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -36,7 +37,8 @@ class PostsController extends Controller
     public function create()
     {
     
-        return view('posts.create')->withCategories(Category::all());
+        return view('posts.create')->withCategories(Category::all())
+        ->with('tags',Tag::all());
     }
 
     /**
@@ -51,10 +53,10 @@ class PostsController extends Controller
         // create the post
         // flash message
         // redirect user
-
+       
         $image = $request->image->store('posts');
      
-        Post::create([
+       $post = Post::create([
             'title'=>$request->title,
             'description'=>$request->description,
             'content'=>$request->content,
@@ -62,6 +64,13 @@ class PostsController extends Controller
             'category_id'=>$request->category_id,
             'published_at'=>$request->published_at
         ]);
+
+        if(request()->tags)
+        {
+            $post->tags()->attach(request()->tags);
+        }
+
+
 
         session()->flash('success','You have created new Post successfully');
         return redirect(route('posts.index'));
@@ -89,6 +98,7 @@ class PostsController extends Controller
         return view('posts.create')->with([
             'post'=>$post,
             'categories'=>Category::all(),
+            'tags'=>Tag::all(),
             ]);
     }
 
@@ -108,6 +118,10 @@ class PostsController extends Controller
             $image = $request->image->store('posts');
             $post->deleteImage();
             $data['image'] = $image;
+        }
+        if(request()->tags)
+        {
+            $post->tags()->sync(request()->tags);
         }
        $post->update($data);
 
@@ -145,8 +159,11 @@ class PostsController extends Controller
     public function trashed()
     {
        $trashed = Post::onlyTrashed()->get();
-
-       return view('posts.index')->with('posts',$trashed);
+       $trashPage = true;
+       return view('posts.index')->with([
+           'posts'=>$trashed,
+           'trashPage'=>$trashPage
+           ]);
     }
 
     public function restore($id)
@@ -158,4 +175,6 @@ class PostsController extends Controller
 
         return back();
     }
+    
+    
 }

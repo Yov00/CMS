@@ -74,6 +74,11 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    
+                                    <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
+                                            My Profile
+                                 </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -96,11 +101,11 @@
                         @endif
                 
                         @if(session()->has('error'))
-                 
-                        <div class="alert alert-danger flashing" id="flash-message">
-                                {{session()->get('error')}}
-                        </div>
-              
+                        <div class="container">
+                            <div class="alert alert-danger" id="s">
+                                    {{session()->get('error')}}
+                            </div>
+                         </div>
                         @endif
             @Auth
             <div class="container "  >
@@ -108,6 +113,11 @@
                         <div class="col-md-4 sticky-top">
                             
                             <ul class="list-group">
+                                @if(auth()->user()->isAdmin())
+                                    <li class="list-group-item">
+                                    <a href="{{route('users.index')}}">Users</a>
+                                    </li>
+                                @endif
                                 <li class="list-group-item">
                                 <a href="{{route('posts.index')}}">Posts</a>
                                 </li>
@@ -116,13 +126,17 @@
                                         <a href="/categories">Categories</a>
                                     </li>
                                     
+                                <li class="list-group-item">
+                                    <a href="/tags">Tags</a>
+                                </li>
+                                    
                             </ul>
 
                             <ul class="list-group mt-5">
                                     <li class="list-group-item">
                                     <a href="{{route('trashed-posts.index')}}">Trashed Posts</a>
                                     </li>
-                                </ul>
+                            </ul>
                             
                         </div>
         
@@ -135,7 +149,7 @@
                
                 </div>
             @else
-            <div class="container">
+            <div class="container" style="width:40%;margin:0px auto;">
                 @yield('content')
                
             </div>

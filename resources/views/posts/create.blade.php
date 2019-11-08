@@ -37,7 +37,27 @@
                         @endforeach
                       
                     </select>
+                   
             </div>
+            @if($tags->count() > 0)
+            <div class="form-group">
+                <label for="tags">Tags</label>
+              
+                <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
+                    @foreach($tags as $tag)
+                    <option value="{{$tag->id}}"
+                        @if (isset($post))
+                            @if($post->hasTag($tag->id))
+                                selected
+                            @endif
+                        @endif
+                        
+                        >{{$tag->name}}</option>
+                    @endforeach
+                </select>
+            
+            </div>
+            @endif
             <div class="form-group">
                 <label for="published_at">Published At</label>
                 <input type="text" class="form-control" name="published_at" id="published_at" value="{{isset($post) ? $post->published_at :''}}">
@@ -68,13 +88,20 @@
 
 @section('css')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+        $('.tags-selector').select2();
+    });
+
     flatpickr('#published_at',{
         enableTime: true
     });

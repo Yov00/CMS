@@ -45,7 +45,14 @@ class CategoriesController extends Controller
 
     public function destroy($id)
     {
-        Category::find($id)->delete();
+        $category = Category::find($id);
+        if($category->posts->count() > 0)
+        {
+            session()->flash('error','Category cannot be deleted because it has some posts.');
+            return back();
+        }
+        $category->delete();
+        
         session()->flash('success','Category deleted successfully!');
         return back();
     }

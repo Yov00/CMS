@@ -11,18 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/','WelcomeController@index');
+Route::get('/post/{post}',[PostsController::class,'show']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('categories/new','CategoriesController@create')->name('categories.create')->middleware('auth');
-Route::post('categories/new','CategoriesController@store')->middleware('auth');
-Route::delete('/categories/delete/{id}','CategoriesController@destroy')->middleware('auth');
-Route::put('/categories/{category}/update','CategoriesController@update')->middleware('auth');
-Route::get('/categories/{category}/edit','CategoriesController@edit')->middleware('auth')->name('categories.edit');
+
+
+
+
 Route::get('categories','CategoriesController@index')->name('categories.index');
 
 Route::resource('posts','PostsController');
@@ -30,3 +27,24 @@ Route::resource('posts','PostsController');
 Route::get('trashed-posts','PostsController@trashed')->name('trashed-posts.index');
 
 Route::put('restore-post/{post}','PostsController@restore')->name('restore-posts');
+
+Route::resource('tags','TagsController');
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('categories/new','CategoriesController@store');
+    Route::get('/categories/{category}/edit','CategoriesController@edit')->name('categories.edit');
+    Route::get('categories/new','CategoriesController@create')->name('categories.create');
+    Route::delete('/categories/delete/{id}','CategoriesController@destroy');
+    Route::put('/categories/{category}/update','CategoriesController@update');
+
+});
+
+Route::middleware(['verify-admin'])->group(function(){
+    Route::get('users','UsersController@index')->name('users.index');
+    Route::patch('users/makeAdmin/{user}','UsersController@makeAdmin')->name('user.makeAdmin');
+});
+
+
+
+Route::get('users/edit','UsersController@edit')->name('users.edit-profile');
+Route::patch('users/update','UsersController@update')->name('users.update');

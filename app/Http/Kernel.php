@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'verifyCategoryCount' =>\App\Http\Middleware\VerifyCategoriesCount::class,
         'pointToNewPost' => \App\Http\Middleware\CheckIfRedirectNewPost::class,
+        'verify-admin'=> \App\Http\Middleware\VerifyIfIsAdmin::class,
     ];
 
     /**

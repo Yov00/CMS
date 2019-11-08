@@ -10,20 +10,20 @@
   </div>
 
   <div class="card card-default">
-      <div class="card-header">
-          Posts
+      <div class="card-header" style=" {{isset($trashPage) ? 'background-color:tomato;color:white;':''}}   ">
+      {{isset($trashPage) ? 'Trashed Posts':'Posts'}}    
       </div>
       <div class="card-body">
         
          
-        
+   
           @if(count($posts)>0)
           <table class="table">
               <thead>
                   <th>Image</th>
                   <th>Title</th>
                   <th>Category</th>
-                <th></th>
+                  <th></th>
                   <tbody>
                   @foreach ($posts as $post)
               
@@ -43,7 +43,7 @@
                          
                          </td>
                          @if(!$post->trashed())
-                         <td><a href="{{route('posts.edit',$post->category->id)}}" class="btn btn-info btn-sm">Edit</a></td>
+                         <td><a href="{{route('posts.edit',$post->id)}}" class="btn btn-info btn-sm">Edit</a></td>
                          @else
                          <form action="{{route('restore-posts',$post->id)}}" method="POST">
                             @csrf
@@ -70,7 +70,7 @@
               </thead>
           </table>
           @else
-            <h3 class="text-center" >There are no posts.</h3>
+            <h3 class="text-center" >There are no {{isset($trashPage) ? 'trashed':''}}   posts.</h3>
           @endif
           
       </div>
