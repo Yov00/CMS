@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\Blog\PostsController;
+Route::get('/','WelcomeController@index')->name('blogs-home');
+Route::get('/blog/post/{post}',[PostsController::class,'show'])->name('blog.show');
 
-Route::get('/','WelcomeController@index');
-Route::get('/post/{post}',[PostsController::class,'show']);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

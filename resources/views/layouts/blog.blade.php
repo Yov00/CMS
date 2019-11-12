@@ -26,7 +26,7 @@
 
         <div class="navbar-left">
           <button class="navbar-toggler" type="button">&#9776;</button>
-          <a class="navbar-brand" href="../index.html">
+          <a class="navbar-brand" href="{{route('blogs-home')}}">
             <img class="logo-dark" src="{{asset('images/logo-dark.png')}}" alt="logo">
             <img class="logo-light" src="{{asset('images/logo-light.png')}}" alt="logo">
           </a>
@@ -58,7 +58,7 @@
         <div class="row gap-y align-items-center">
 
           <div class="col-6 col-lg-3">
-            <a href="../index.html"><img src="{{asset('images/logo-dark.png')}}" alt="logo"></a>
+          <a href="{{route('home')}}"><img src="{{asset('images/logo-dark.png')}}" alt="logo"></a>
           </div>
 
           <div class="col-6 col-lg-3 text-right order-lg-last">
