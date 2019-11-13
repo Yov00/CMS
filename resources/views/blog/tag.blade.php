@@ -1,27 +1,22 @@
 @extends('layouts.blog')
 @section('title')
-Saas blog
+{{$tag->name}}
 @endsection
 @section('header')
-
-<!--<header class="header text-center text-white" style="background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);">-->
-    <header class="header text-center text-white" style="position:relative;background: url('https://images.pexels.com/photos/418831/pexels-photo-418831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');background-size:cover;background-position:center center;">
-      <div class="overlayy" style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0, 0, 0, 0.5);z-index:2;filter: blur(10px);"></div>
-
-
-        <div class="container" style="z-index:3;">
-        
-
+<header class="header text-center text-white" style="background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);">
+        <div class="container">
+  
           <div class="row">
             <div class="col-md-8 mx-auto">
-              <h1>Latest Blog Posts</h1>
-              <p class="lead-2 opacity-90 mt-6">Read and get updated on how we progress</p>
+  
+              <h1>#{{$tag->name}}</h1>
+              <p class="lead-2 opacity-90 mt-6"></p>
   
             </div>
           </div>
   
         </div>
- </header>
+      </header>
 @endsection
 
 @section('content')
@@ -52,17 +47,11 @@ Saas blog
          
                       {{$posts->appends(['search'=>request()->query('search')])->links()}}
                 
-                  
-               <!--
-                    <nav class="flexbox mt-30">
-                      <a class="btn btn-white disabled"><i class="ti-arrow-left fs-9 mr-4"></i> Newer</a>
-                      <a class="btn btn-white" href="#">Older <i class="ti-arrow-right fs-9 ml-4"></i></a>
-                    </nav>
-                  -->
+             
 
                   </div>
+   
                   @include('partials.sidebar')
-      
                 </div>
               </div>
             </div>

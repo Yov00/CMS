@@ -48,7 +48,7 @@
             
                 <div class="gap-xy-2 mt-6">
                     @foreach ($post->tags as $tag)
-                    <a class="badge badge-pill badge-secondary" href="#">{{$tag->name}}</a>
+                <a class="badge badge-pill badge-secondary" href="{{route('blog.tag',$tag->id)}}">{{$tag->name}}</a>
                     @endforeach
              
                  
@@ -74,24 +74,7 @@
             <div class="row">
               <div class="col-lg-8 mx-auto">
   
-                <div class="media-list">
-  
-                  <div class="media">
-                    <img class="avatar avatar-sm mr-4" src="../assets/img/avatar/1.jpg" alt="...">
-  
-                    <div class="media-body">
-                      <div class="small-1">
-                        <strong>Maryam Amiri</strong>
-                        <time class="ml-4 opacity-70 small-3" datetime="2018-07-14 20:00">24 min ago</time>
-                      </div>
-                      <p class="small-2 mb-0">Thoughts his tend and both it fully to would the their reached drew project the be I hardly just tried constructing I his wonder, that his software and need out where didn't the counter productive.</p>
-                    </div>
-                  </div>
-  
-  
-  
-                </div>
-  
+               
   
                 <hr>
                 <div id="disqus_thread"></div>
@@ -125,5 +108,5 @@
   
   
       </main>
-  
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5dcc20f317b2c60b"></script>
 @endsection
