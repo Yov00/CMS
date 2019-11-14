@@ -10,6 +10,9 @@ class Post extends Model
 {
     use SoftDeletes;
     protected $guarded = [];
+    protected $dates = [
+        'published_at'
+    ];
 
     /**
      * Deleting the Model's Image from storage
@@ -26,7 +29,7 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
- 
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
@@ -35,7 +38,7 @@ class Post extends Model
     // I post has tag
     public function hasTag($tagId)
     {
-       return in_array($tagId, $this->tags->pluck('id')->toArray());
+        return in_array($tagId, $this->tags->pluck('id')->toArray());
     }
 
 
@@ -44,15 +47,23 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', now());
+    }
+
+
+
+    // Search for posts from wherever user selected have selected
     public function scopeSearched($query)
     {
         $search = request()->query('search');
 
-        if(!$search)
-        {
-            return $query;
-        }else{
-            return $query->where('title','LIKE',"%{$search}%");
+        if (!$search) {
+            return $query->published();
+        } else {
+            return $query->published()->where('title', 'LIKE', "%{$search}%");
         }
     }
 }

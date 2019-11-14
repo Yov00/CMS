@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta char et="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -58,7 +58,7 @@
         <div class="row gap-y align-items-center">
 
           <div class="col-6 col-lg-3">
-          <a href="{{route('home')}}"><img src="{{asset('images/logo-dark.png')}}" alt="logo"></a>
+          <a href="{{route('blogs-home')}}"><img src="{{asset('images/logo-dark.png')}}" alt="logo"></a>
           </div>
 
           <div class="col-6 col-lg-3 text-right order-lg-last">

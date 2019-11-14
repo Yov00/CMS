@@ -14,6 +14,7 @@ class PostsController extends Controller
     // showing individual blog
     public function show(Post $post)
     {
+       
         return view('blog.show')->with('post',$post);
     }
 

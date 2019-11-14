@@ -55,7 +55,7 @@ class PostsController extends Controller
         // redirect user
        
         $image = $request->image->store('posts');
-     
+       
        $post = Post::create([
             'title'=>$request->title,
             'description'=>$request->description,
@@ -112,7 +112,7 @@ class PostsController extends Controller
      */
     public function update(UpdatePostsRequest $request,Post $post)
     {
-        $data = $request->only(['title','description','content','image','publised_at','category_id']);
+        $data = $request->only(['title','description','content','image','published_at','category_id']);
       
         if($request->hasFile('image'))
         {

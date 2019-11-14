@@ -27,6 +27,7 @@ Saas blog
 @section('content')
     <!-- Main Content -->
     <main class="main-content">
+     
             <div class="section bg-gray">
               <div class="container">
                 <div class="row">

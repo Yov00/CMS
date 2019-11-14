@@ -59,7 +59,8 @@
             </div>
             @endif
             <div class="form-group">
-                <label for="published_at">Published At</label>
+                <label for="published_at">Published At  UTC (+00:00)</label>
+             
                 <input type="text" class="form-control" name="published_at" id="published_at" value="{{isset($post) ? $post->published_at :''}}">
             </div>
 
@@ -103,7 +104,8 @@
     });
 
     flatpickr('#published_at',{
-        enableTime: true
+        enableTime: true,
+        enableSeconds:true
     });
 </script>
 @endsection
