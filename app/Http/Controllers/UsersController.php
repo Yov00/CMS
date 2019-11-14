@@ -40,9 +40,11 @@ class UsersController extends Controller
     public function update(UpdateProfileRequest $request)
     {
         $user = auth()->user();
+        $image = $request->image->store('users');
         $user->update([
             'name'=>request('name'),
-            'about'=>request('about')
+            'about'=>request('about'),
+            'image'=>$image,
         ]);
 
         session()->flash('success','User updated successfully.');

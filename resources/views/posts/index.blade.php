@@ -25,7 +25,10 @@
                   <th>Category</th>
                   <th></th>
                   <tbody>
-                  @foreach ($posts as $post)
+                  <!--if admin -->
+                    
+                   <!--if admin -->
+                  @foreach (Auth()->user()->isAdmin() ? $posts : Auth()->user()->posts  as $post)
               
                     <tr>
                           <td>

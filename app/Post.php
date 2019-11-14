@@ -61,7 +61,7 @@ class Post extends Model
         $search = request()->query('search');
 
         if (!$search) {
-            return $query->published();
+            return $query->published()->orderBy('published_at','ASC');
         } else {
             return $query->published()->where('title', 'LIKE', "%{$search}%");
         }

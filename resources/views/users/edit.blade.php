@@ -8,7 +8,7 @@
                 <div class="card-header">My Profile</div>
 
                 <div class="card-body">
-                <form action="{{route('users.update')}}" method="POST">
+                <form action="{{route('users.update')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group">
@@ -26,7 +26,17 @@
                                 Update
                             </button>
                         </div>
-                        
+                        <div class="form-group">
+                                <label for="image">Image</label>
+                                
+                           
+                                @if (Auth()->user()->image)
+                                <div class="form-group">
+                                    <img src="{{asset('storage/'.Auth()->user()->image)}}" width="100%" alt="">
+                                </div>
+                                @endif
+                                    <input type="file" class="form-control" name="image" id="image">
+                            </div>
                        
                     @error('name')
                     <div class="alert alert-danger">

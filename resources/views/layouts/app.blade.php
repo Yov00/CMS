@@ -43,8 +43,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                    <a  class="nav-link" href="/categories/new" role="button" >
-                                         Add Category
+                                    <a  class="nav-link" href="{{route('blogs-home')}}" role="button" >
+                                      Return to main view.
                                     </a>
                             </li>
                     </ul>

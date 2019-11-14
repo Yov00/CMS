@@ -39,9 +39,11 @@
          
           </ul>
         </section>
-
+        @guest
         <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">Log in</a>
-
+        @else
+      <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">{{Auth()->user()->name}}</a>
+        @endif
       </div>
     </nav>
     @yield('header')
